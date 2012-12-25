@@ -1,0 +1,289 @@
+/*This file is only needed for demo purposes in demo/ subdirectory */
+
+body {
+  margin: 0;
+  background-color: #F5F5FF;
+  font-family: Helvetica, Arial, FreeSans, sans-serif;
+  color: #454545;
+  font-size: 14px;
+}
+
+.clear {
+  clear: left;
+}
+
+#container {
+  min-width: 1000px;
+}
+
+.description {
+  padding-bottom: 20px;
+}
+
+.rowLayout {
+  position: relative;
+  width: 100%;
+  clear: both;
+}
+
+.descLayout {
+  width: 50%;
+  float: left;
+  background-color: #FFF;
+  border-right: 1px solid #E5E5EE;
+}
+
+.codeLayout {
+  position: absolute;
+  left: 50%;
+  top: 0;
+}
+
+/**
+ * pad
+ */
+
+.pad {
+  width: 400px;
+  margin: 0 40px 0 40px;
+}
+
+.descLayout .pad {
+  float: right;
+}
+
+.pad.bottomSpace100 {
+  padding-bottom: 100px;
+}
+
+.pad.bottomSpace150 {
+  padding-bottom: 150px;
+}
+
+.pad.bottomSpace200 {
+  padding-bottom: 200px;
+}
+
+.pad.bottomSpace300 {
+  padding-bottom: 300px;
+}
+
+.pad.bottomSpace450 {
+  padding-bottom: 450px;
+}
+
+.pad.bottomSpace550 {
+  padding-bottom: 550px;
+}
+
+.pad.bottomSpace650 {
+  padding-bottom: 650px;
+}
+
+.pad.bottomSpace750 {
+  padding-bottom: 750px;
+}
+
+.pad.bottomSpace850 {
+  padding-bottom: 850px;
+}
+
+.pad.bottomSpace1400 {
+  padding-bottom: 1400px;
+}
+
+/**
+ * headers
+ */
+
+h1, h2, h3, .tagline {
+  font-family: Verdana, Helvetica, Arial, FreeSans, sans-serif;
+}
+
+h1 {
+  margin: 0;
+  padding-top: 20px;
+  font-size: 45px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h2 {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h3 {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/**
+ * text
+ */
+
+a {
+  text-decoration: none;
+  color: #4267B6;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.tagline {
+  font-size: 15px;
+  margin-bottom: 50px;
+  width: 300px;
+  color: #646464;
+}
+
+h1 .small {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+p .small {
+  font-size: 13px;
+  margin-top: 60px;
+}
+
+.nobreak {
+  white-space: nowrap;
+}
+
+pre {
+  clear: left;
+}
+
+ul, ol, p {
+  margin-bottom: 2em;
+  clear: left;
+}
+
+/**
+ * jsFiddle
+ */
+
+.jsFiddle {
+  margin-top: 34px;
+  margin-bottom: 18px;
+  clear: both;
+  float: left;
+}
+
+.jsFiddleLink {
+  border: 1px solid #26445F;
+  text-shadow: 0 1px 1px #253E5C;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 26px;
+  padding: 0 10px;
+  float: left;
+  cursor: pointer;
+
+  /*gradient*/
+  background: #5184af; /* Old browsers */
+  background: -moz-linear-gradient(top, #5184af 0%, #40729d 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5184af), color-stop(100%, #40729d)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #5184af 0%, #40729d 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #5184af 0%, #40729d 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #5184af 0%, #40729d 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #5184af 0%, #40729d 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#5184af', endColorstr = '#40729d', GradientType = 0); /* IE6-9 */
+}
+
+/**
+ * warning
+ */
+
+.warning {
+  border: 1px solid #D4D8EB;
+  padding: 10px;
+  background: #F0F1F8;
+  box-shadow: 2px 2px 7px #777;
+  margin-bottom: 40px;
+}
+
+.warning strong {
+  background: #747477;
+  color: #FFF;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/**
+ * Handsontable
+ */
+
+.handsontable {
+  margin-bottom: 10px;
+  color: #000;
+}
+
+/**
+ * Highlight.js
+ */
+
+.codeLayout pre {
+  width: 400px;
+  font-size: 14px;
+}
+
+.codeLayout pre code {
+  padding: 0;
+  background: none;
+}
+
+/**
+ * home page
+ */
+body.home {
+  background: #FFF;
+}
+
+body.home h1 {
+  position: relative;
+  width: 800px;
+}
+
+body.home #githubWatch {
+  position: absolute;
+  top: 31px;
+  right: 100px;
+}
+
+body.home #githubFork {
+  position: absolute;
+  top: 31px;
+  right: 0;
+}
+
+body.home #domainNotice {
+  display: none;
+}
+
+body.home .centerLayout {
+  width: 880px;
+  margin: 0 auto;
+}
+
+body.home .linkColumn {
+  width: 266px;
+  float: left;
+}
+
+body.home ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+body.home ul li {
+  margin: 0 0 10px 0;
+}

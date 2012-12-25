@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Conditional formatting - Handsontable</title>
+
+  <!--
+  Loading Handsontable (full distribution that includes all dependencies apart from jQuery)
+  -->
+  <script src="../lib/jquery.min.js"></script>
+  <script src="../dist/jquery.handsontable.full.js"></script>
+  <link rel="stylesheet" media="screen" href="../dist/jquery.handsontable.full.css">
+
+  <!--
+  Loading demo dependencies. They are used here only to enhance the examples on this page
+  -->
+  <link rel="stylesheet" media="screen" href="css/samples.css">
+  <script src="js/samples.js"></script>
+  <script src="js/highlight/highlight.pack.js"></script>
+  <link rel="stylesheet" media="screen" href="js/highlight/styles/github.css">
+
+  <!--
+  Facebook open graph. Don't copy this to your project :)
+  -->
+  <meta property="og:title" content="Conditional formatting - Handsontable">
+  <meta property="og:description"
+        content="This demo shows how to use the cell type renderer feature to make some conditional formatting">
+  <meta property="og:url" content="http://handsontable.com/demo/conditional.html">
+  <meta property="og:image" content="http://handsontable.com/demo/image/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="409">
+  <meta property="og:image:height" content="164">
+  <link rel="canonical" href="http://handsontable.com/demo/conditional.html">
+
+  <!--
+  Google Analytics for GitHub Page. Don't copy this to your project :)
+  -->
+  <script src="js/ga.js"></script>
+</head>
+
+<body>
+<a href="http://github.com/warpech/jquery-handsontable">
+  <img style="position: absolute; top: 0; right: 0; border: 0;"
+       src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"/>
+</a>
+
+<div id="container">
+
+  <div class="rowLayout">
+    <div class="descLayout">
+      <div class="pad">
+        <h1><a href="../index.html">Handsontable</a></h1>
+
+        <div class="tagline">a minimalistic Excel-like <span class="nobreak">data grid</span> editor
+          for HTML, JavaScript &amp; jQuery
+        </div>
+
+        <h2>Conditional formatting</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="rowLayout">
+    <div class="descLayout">
+      <div class="pad bottomSpace650">
+        <p>This demo shows how to use the cell type renderer feature to make some conditional formatting:</p>
+
+        <ol>
+          <li>first row is <span style="font-weight: bold">read-only</span>, and formatted in <span
+              style="color: green; font-weight: bold">green bold</span> text
+          </li>
+          <li>all cells in the Nissan column are written in <span style="font-style: italic">italic</span></li>
+          <li>empty cells have <span style="background: silver">silver</span> background</li>
+          <li>negative numbers are written in <span style="color: red">red</span></li>
+        </ol>
+
+        <div id="example1"></div>
+
+        <style>
+          .negative {
+            color: red;
+          }
+        </style>
+
+        <p>
+          <button name="dump" data-dump="#example1">Dump to console</button>
+        </p>
+      </div>
+    </div>
+
+    <div class="codeLayout">
+      <div class="pad">
+        <script>
+          function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+            Handsontable.TextCell.renderer.apply(this, arguments);
+            if (parseInt(value, 10) < 0) { //if row contains negative number
+              td.className = 'negative'; //add class "negative"
+            }
+            else {
+              td.className = '';
+            }
+            if(row === 0) {
+              td.style.fontWeight = 'bold';
+              td.style.color = 'green';
+            }
+            if(cellProperties.readOnly) {
+              td.style.opacity = 0.7;
+            }
+            if(value === 'Nissan') {
+              td.style.fontStyle = 'italic';
+            }
+
+            if(!value || value === '') {
+              td.style.background = '#EEE';
+            }
+            else {
+              td.style.background = '';
+            }
+          }
+
+          var data = [
+            ["", "Kia", "Nissan", "Toyota", "Honda"],
+            ["2008", -5, 11, 12, 13],
+            ["2009", 20, -11, 14, 13],
+            ["2010", 30, 15, -12, "readOnly"]
+          ];
+
+          var container = $("#example1");
+          container.handsontable({
+            data: data,
+            startRows: 5,
+            startCols: 5,
+            minSpareRows: 1,
+            contextMenu: true,
+            onSelection: function (row, col, row2, col2) {
+              var meta = container.handsontable('getCellMeta', row2, col2);
+              if (meta.isWritable == false) {
+                container.handsontable('updateSettings', {fillHandle: false});
+              }
+              else {
+                container.handsontable('updateSettings', {fillHandle: true});
+              }
+            },
+            cells: function (row, col, prop) {
+              var cellProperties = {};
+              if (row === 0 || container.handsontable('getData')[row][col] === 'readOnly') {
+                cellProperties.readOnly = true; //make cell read-only if it is first row or the text reads 'readOnly'
+              }
+              cellProperties.type = {
+                renderer: negativeValueRenderer
+              }
+              return cellProperties;
+            }
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <div class="rowLayout">
+    <div class="descLayout">
+      <div class="pad"><p>For more examples, head back to the <a href="../index.html">main page</a>.</p>
+
+        <p class="small">Handsontable &copy; 2012 Marcin Warpechowski and contributors.<br> Code and documentation
+          licensed under the The MIT License.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
