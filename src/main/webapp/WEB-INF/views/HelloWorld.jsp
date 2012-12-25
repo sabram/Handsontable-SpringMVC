@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>YSpring MVC Example</title>
+    <title>Spring MVC Example...</title>
 
     <script src="<c:url value='/resources/js/jquery-1.8.3.min.js' /> "></script>
     <script src="<c:url value='/resources/js/handsontable-0.7.5/dist/jquery.handsontable.full.js' /> "></script>
