@@ -8,7 +8,16 @@ public class Request implements Serializable {
     private int left;
     private int right;
     private Object[] a;
-    private Object b;
+    private String description;
+    private List<Object[]> data;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Object[] getA() {
         return a;
@@ -18,12 +27,12 @@ public class Request implements Serializable {
         this.a = a;
     }
 
-    public Object getB() {
-        return b;
+    public List<Object[]> getData() {
+        return data;
     }
 
-    public void setB(Object b) {
-        this.b = b;
+    public void setData(List<Object[]> data) {
+        this.data = data;
     }
 
     public int getLeft() {

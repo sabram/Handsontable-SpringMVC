@@ -88,8 +88,13 @@ public class HelloWorldController {
         result.setSubtraction(request.getLeft() - request.getRight());
         result.setMultiplication(request.getLeft() * request.getRight());
 
-        List<List<String>> aList = (List<List<String>>)request.getB();
-        System.out.println(aList);
+//        List<List<String>> aList = (List<List<String>>)request.getData();
+//        Object[][] aList = (Object[][])request.getData();
+        List<Object[]> b = request.getData();
+        System.out.println(request.getData());
+        result.setData(b);
+        String description = request.getDescription();
+        result.setDescription(description);
         return result;
     }
 }

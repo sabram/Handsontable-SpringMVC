@@ -42,8 +42,8 @@
         });
     </script>
 
-    Enter greeting recipient...:
-    <INPUT ID="msg"  NAME="msg" TYPE="TEXT" value="${msg}">
+    Description:
+    <INPUT ID="description"  NAME="description" TYPE="TEXT" >
     <p></p>
     <INPUT ID="Submit" TYPE="SUBMIT" VALUE="Submit">
 </FORM>
@@ -83,8 +83,8 @@
             console.log("tableDataJson=", tableDataJson);
 
             var msg = $("#msg").val();
-            var formValues = jQuery.param(msg);
-            console.log("formValues=" + formValues);
+//            var formValues = jQuery.param(msg);
+//            console.log("formValues=" + formValues);
             var jsonStr = '  "user":{"name":"'+msg + '"}  '
 //                    + "&"
 //                    + "education=education" + "&"
@@ -149,7 +149,9 @@
 
             var shaundata = JSON.stringify({ "left": 13 , "right" : 7, "a": [["a"],["b"]] });
 //            var ddd = JSON.stringify({"left":13,"right":7,"a":tableData});
-            var ddd = JSON.stringify({"left":13,"right":7,"a":["a", "b"], "b":tableData});
+            var description = $('#description').val();
+            console.log("description", description);
+            var ddd = JSON.stringify({"description": description,  "data":tableData});
             console.log("shaundata", shaundata);
             console.log("ddd", ddd);
             jQuery.ajax({
@@ -163,6 +165,14 @@
                 'dataType': 'json',
                 'success': function (e) {
                     console.log('AJAX post returned ', e);
+
+                    var s = 'The following data was returned from server:';
+                    s = s+'<p>Description: ' + e.description+'</p>';
+                    s = s+'<p>Data: </p>';
+                    $.each(e.data, function(index, value) {
+                        s = s+'<p>' + value+'</p>';
+                    });
+                    $('#jsGreeting').html(s);
                 }
             });
 
