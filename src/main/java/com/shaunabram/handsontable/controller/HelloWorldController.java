@@ -4,10 +4,9 @@ import com.shaunabram.handsontable.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Handles requests for the HelloWorld example.
@@ -37,9 +36,60 @@ public class HelloWorldController {
         return "HelloWorld";
     }
 
-    @RequestMapping(value = "/jsontest", method = RequestMethod.POST)
-    public String jsontest(@ModelAttribute(value="user") User user) {
-        System.out.println("user=" + user);
+    @RequestMapping(value = "/jsontest1", method = RequestMethod.POST)
+    public String jsontest1(@RequestParam(value="msg", required=false) String msg) {
+        System.out.println("msg=" + msg);
         return "HelloWorld";
+    }
+
+    @RequestMapping(value = "/jsontest2", method = RequestMethod.POST)
+    public String jsontest2(@RequestParam(value="msg1", required=false) String msg1,
+                            @RequestParam(value="msg2", required=false) String msg2
+    ) {
+        System.out.println("msg1=" + msg1);
+        System.out.println("msg2=" + msg2);
+        return "HelloWorld";
+    }
+
+    @RequestMapping(value = "/jsontest3", method = RequestMethod.POST)
+    public String jsontest3(@RequestParam(value="msg1", required=false) String msg1) {
+        System.out.println("msg1=" + msg1);
+        return "HelloWorld";
+    }
+
+    @RequestMapping(headers ={"Accept=application/json"}, value = "/jsontest4.json", method = RequestMethod.POST)
+//    public String jsontest4(@RequestBody Object user) {
+    public String jsontest4(@RequestParam(value="a", required=false) String a,
+                            @RequestParam(value="b", required=false) String b) {
+        System.out.println("a=" + a);
+        System.out.println("b=" + b);
+        return "HelloWorld";
+    }
+
+    @RequestMapping(value = "/jsontest5", method = RequestMethod.POST)
+    public String jsontest5(@RequestParam(value="a", required=false) String a,
+                            @RequestParam(value="b", required=false) Object[] b) {
+        System.out.println("a=" + a);
+        System.out.println("b=" + b);
+        return "HelloWorld";
+    }
+
+    @RequestMapping(value = "/jsontest6", method = RequestMethod.POST)
+    public String jsontest5(@RequestParam(value="a", required=false) Object[] b) {
+        System.out.println("b=" + b);
+        return "HelloWorld";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "jsontest7")
+    @ResponseBody
+    public Result math(@RequestBody final Request request) {
+        final Result result = new Result();
+        result.setAddition(request.getLeft() + request.getRight());
+        result.setSubtraction(request.getLeft() - request.getRight());
+        result.setMultiplication(request.getLeft() * request.getRight());
+
+        List<List<String>> aList = (List<List<String>>)request.getB();
+        System.out.println(aList);
+        return result;
     }
 }

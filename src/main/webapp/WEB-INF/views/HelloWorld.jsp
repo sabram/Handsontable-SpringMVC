@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Spring MVC Example...</title>
+    <title>Spring MVC Example.</title>
 
     <script src="<c:url value='/resources/js/jquery-1.8.3.min.js' /> "></script>
     <script src="<c:url value='/resources/js/handsontable-0.7.5/dist/jquery.handsontable.full.js' /> "></script>
@@ -21,7 +21,7 @@
     </c:otherwise>
 </c:choose>
 
-<div style="text-align:center">Hello ${greeting}!</div>
+<div style="text-align:center">-Hello ${greeting}!</div>
 <br>
 
 
@@ -91,9 +91,81 @@
 //                    + "tableData=" + tableDataJson
 ;
             console.log("jsonStr=" + jsonStr);
-            $.post("jsontest", jsonStr, function (e) {
-                console.log('AJAX post returned ', e);
+
+//            $.post("jsontest1", "msg=msg", function (e) {
+//                console.log('AJAX post returned ', e);
+//            });
+
+//            $.post("jsontest2", "msg1=msg1&msg2=msg2", function (e) {
+//                console.log('AJAX post returned ', e);
+//            });
+
+
+//            $.post("jsontest3",
+//                    {  msg1:  'msg1' },
+//                    function (e) {
+//                console.log('AJAX post returned ', e);
+//            });
+
+
+            //none of the following work:
+            //  data: {"name": "name"},
+            //  data: {"user":{"name": "name"}},
+            //  data: {user:{name: "name"}},
+            //work against
+            //  public String jsontest4(@RequestBody Object user) {
+            //or
+            //  public String jsontest4(@RequestParam("user") User user) {
+//            $.ajax({
+//                type: "POST",
+////                contentType: "application/json; charset=utf-8",
+//                url:  "jsontest4.json",
+//                data: {a:"a" },
+////                dataType: "json",
+//                error: function(data){
+//                    alert("fail", data);
+//                },
+//                success: function(data){
+//                    alert("success", data);
+//                }
+//            });
+
+            //This jsontest5 doesn't work to:
+//            @RequestMapping(value = "/jsontest5", method = RequestMethod.POST)
+//            public String jsontest5(@RequestParam(value="a", required=false) String a,
+//                            @RequestParam(value="b", required=false) Object[] b) {
+//            $.post("jsontest5",
+//                    {  a:  'a' ,
+//                    b : [["","Kia"],["2008","10"]] },
+//                    function (e) {
+//                console.log('AJAX post returned ', e);
+//            });
+
+//            $.post("jsontest6",
+//                    'a=[["","Kia"],["2008","10"]]',
+//                    function (e) {
+//                        console.log('AJAX post returned ', e);
+//                    });
+
+            var shaundata = JSON.stringify({ "left": 13 , "right" : 7, "a": [["a"],["b"]] });
+//            var ddd = JSON.stringify({"left":13,"right":7,"a":tableData});
+            var ddd = JSON.stringify({"left":13,"right":7,"a":["a", "b"], "b":tableData});
+            console.log("shaundata", shaundata);
+            console.log("ddd", ddd);
+            jQuery.ajax({
+                type: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                'url': "jsontest7",
+                'data':  ddd,
+                'dataType': 'json',
+                'success': function (e) {
+                    console.log('AJAX post returned ', e);
+                }
             });
+
             console.log("AJAX post done");
 
 //document.getElementById('xls').value = tableDataJson;
