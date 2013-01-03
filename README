@@ -1,8 +1,10 @@
-A simple SpringMVC HelloWorld app.
-A Html/JSP/JavaScript client, talks to a Spring-DI enabled server with a simplistic Controller/Service/DAO design.
-The app is tested using JUnit, FEST assertions and Selenium.
-The app's functionality is deliberately simplistic, but is useful as a template to bootstrap more complex apps.
+A simple app demonstrating how to transfer data from a Handsontable based client to a SpringMVC server.
 
+Handsontable is a an Excel-like data grid utilising JQuery. It basically provides spreadsheet like functionality.
 
+In this example, the 'spreadsheet' is embedded in a JSP/JavaScript/Jquery client, talking to a SpringMVC server via a Json/Ajax call.
+The server is very simple and simply echos the data back to the client, but is none the less fully tested with JUnit and Selenium tests.
 
-This file was modified by IntelliJ IDEA 11.1.4 for binding GitHub repository
+The example is deployed at Handsontable-SpringMVC.shaunabram.cloudbees.net
+For more details, see my blogpost at http://www.shaunabram.com/handsontable-springmvc/
+
