@@ -39,7 +39,7 @@
 <div style="text-align:left">
     <label id="serverResults"></label>
 </div>
-
+<img src="<c:url value='/resources/img/Button-Built-on-CB-1.png'/>" alt='Built on CloudBees' >
 </body>
 
 <script>
